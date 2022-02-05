@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Shell Mode - Starling Documentation</title>
+        <title>Global Behavior - Starling Documentation</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -71,7 +71,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li class="chapter-item expanded "><a href="shell.html" class="active"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">8.</strong> Acknowledgements</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html" class="active"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">8.</strong> Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -127,30 +127,29 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="shell-mode"><a class="header" href="#shell-mode">Shell Mode</a></h1>
-<p>Shell mode executes user input as a shell command. Shell commands are sourced from the config file of the default shell. Therefore, aliases and functions can both be called from shell model with natural language names that the user can define.</p>
-<pre><code class="language-bash">## example: Saying &quot;dim&quot; will automatically lower system brightness
-## located in ~/.bashrc
-alias dim=&quot;xrandr --output eDP --brightness .3&quot;
-## example: Saying &quot;mute&quot; will automatically mute system volume
-alias mute=&quot;amixer -q sset Master toggle&quot;
-</code></pre>
-<p>This functionality allows the power and flexibility of the shell in conjunction with natural language commands the user can define. In order to gain the maximum flexibility from Starling,  users are encouraged to extend behavior in this way. </p>
-<p>Shell mode sources commands from the default shell. Therefore it should work with bash, zsh, fish, and more.</p>
-<h2 id="safety"><a class="header" href="#safety">Safety</a></h2>
-<p>By default, Starling  has a safety feature which will alert the user and give a warning before executing a command. This is since the shell is very powerful, it has the ability to manipulate many things on the system, even without root. However, the alert buffer time can be reduced in the config file if  it is a nuisance.</p>
-<p>Since Starling  sources from the confit file of the shell, there is no risk of calling arbitrary shell commands like <code>rm</code>  unless it is specifically aliased or used in a function within the config file.</p>
-<h3 id="indicator"><a class="header" href="#indicator">Indicator</a></h3>
-<p>Shell mode is represented with a green circle in the dock.</p>
+                        <h1 id="global-behavior"><a class="header" href="#global-behavior">Global Behavior</a></h1>
+<h2 id="switching-modes"><a class="header" href="#switching-modes">Switching Modes</a></h2>
+<p>To switch to a different mode, say one of the following phrases.
+<code> Command mode</code>
+<code> Shell mode</code>
+<code> Dictation mode</code>
+<code> Sleep mode</code></p>
+<h2 id="timer"><a class="header" href="#timer">Timer</a></h2>
+<p>For many users fighting repetitive strain injury, having a system timer to remind them to take breaks  is particularly useful. As result, I have included a timer by default in Starling.  The following two commands can be used to start and stop the timer respectively
+<code>start timer</code>
+<code>end timer </code></p>
+<h2 id="tray-indicator"><a class="header" href="#tray-indicator">Tray Indicator</a></h2>
+<p>Starling  uses a tray indicator that is compatible with most system trays on Linux.  This tray indicator can be used to quit the application, start a timer, or end a timer. Sleep mode  is represented with a moon icon. </p>
+<p>All communications with the tray is done using a local socket.  You do not need to understand how this works in order to use Starling. However,  you should avoid using local port 9999  since this is where the Starling messages are sent.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="command.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="installing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="dictation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="command.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -159,10 +158,10 @@ alias mute=&quot;amixer -q sset Master toggle&quot;
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="command.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="installing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="dictation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="command.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

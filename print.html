@@ -21,7 +21,6 @@
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="fonts/fonts.css">
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="theme/light.css">
         <link rel="stylesheet" href="theme/dark.css">
     </head>
     <body>
@@ -73,7 +72,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">2.</strong> Command Mode</a></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">3.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">4.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">5.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">6.</strong> Tray Icon</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">7.</strong> Acknowledgements</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">8.</strong> Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -129,36 +128,74 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="about"><a class="header" href="#about">About</a></h2>
-<p>This program is a general purpose voice control program for Linux. It was especially created with the goal of helping people with disabilities or hand injuries.  It seeks to be easily customizable  and functionally robust. It can control  windows, execute commands defined in the config.yaml  file,  automatically type spoken input through speech-to-text, execute shell commands,  or serve as a general-purpose orchestrator between other application-specific voice control programs.</p>
+                        <h1 id="about"><a class="header" href="#about">About</a></h1>
+<p>Starling is a general purpose voice control program for Linux. It was especially created with the goal of helping people with disabilities or hand injuries.  It seeks to be easily customizable  and functionally robust. It can control  windows, execute commands defined in the config.yaml  file,  automatically type spoken input through speech-to-text, execute shell commands,  or serve as a general-purpose orchestrator between other application-specific voice control programs.</p>
 <p>All speech recognition is done locally on your own device. No cloud APIs are used and there is no third-party interaction with your data whatsoever.</p>
+<h2 id="development-background"><a class="header" href="#development-background">Development Background</a></h2>
+<p>This project was the result of my junior year independent work at Princeton University.</p>
+<p>The goal of this project has been to try and reimagine voice control.  For many disabled users, voice control appears to be a second rate solution.  It is seen as something of a necessary crutch to participate in otherwise  difficult activities.</p>
+<p>By leveraging the power of the system shell  and  user customization, I wanted to make it so that voice control could  navigate the system with fewer commands  and more natural  input.</p>
+<h2 id="help"><a class="header" href="#help">Help</a></h2>
+<p>For a detailed list of program functionality please consult this website. If you have a technical problem or found a bug please feel free to create a Github issue.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="intallation"><a class="header" href="#intallation">Intallation</a></h1>
+<h2 id="downloading-the-code"><a class="header" href="#downloading-the-code">Downloading the Code</a></h2>
+<p>You can either download  the project from GitHub as a zip file or clone it with Git. It  is recommended to do the latter  in order to stay up to date with any project changes or bug fixes. You  must have Git  installed in order to run this command.</p>
+<pre><code class="language-bash">git clone https://github.com/C-Loftus/Starling
+</code></pre>
 <h2 id="building"><a class="header" href="#building">Building</a></h2>
-<p>You must have python3, pip3, and make installed. These should already be installed on most distributions. 
+<p>Once you have downloaded the code, you can then begin the process of setting it up.
+You must have python3, pip3, and make installed. These should already be installed on most distributions. 
 To build, type either your package manager name or OS name. (i.e. <code>ubuntu</code>, <code>pop-os</code>, <code>apt</code> all build the same)</p>
 <pre><code>make ubuntu 
 </code></pre>
+<p>The installation process will install all python dependencies and download the model used for voice recognition.</p>
 <p>To uninstall</p>
 <pre><code>make uninstall
 </code></pre>
 <h2 id="running"><a class="header" href="#running">Running</a></h2>
-<p>pipenv installs all python packages in this folder. That way they will not conflict with your existing python environments. <code>pipenv</code> before the command will run it in this environment.</p>
-<pre><code>pipenv python3 src/main.py
+<p>pipenv installs all python packages for Starling in its own separate folder. That way they will not conflict with your existing python environments. <code>pipenv</code> before the command will run it in this environment.</p>
+<pre><code class="language-bash">cd Starling
+pipenv python3 src/main.py
 </code></pre>
-<h2 id="help"><a class="header" href="#help">Help</a></h2>
-<p>For a detailed list of program functionality please consult the project's website. If you have a technical problem or found a bug please feel free to create a Github issue.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="global-behavior"><a class="header" href="#global-behavior">Global Behavior</a></h1>
+<h2 id="switching-modes"><a class="header" href="#switching-modes">Switching Modes</a></h2>
+<p>To switch to a different mode, say one of the following phrases.
+<code> Command mode</code>
+<code> Shell mode</code>
+<code> Dictation mode</code>
+<code> Sleep mode</code></p>
+<h2 id="timer"><a class="header" href="#timer">Timer</a></h2>
+<p>For many users fighting repetitive strain injury, having a system timer to remind them to take breaks  is particularly useful. As result, I have included a timer by default in Starling.  The following two commands can be used to start and stop the timer respectively
+<code>start timer</code>
+<code>end timer </code></p>
+<h2 id="tray-indicator"><a class="header" href="#tray-indicator">Tray Indicator</a></h2>
+<p>Starling  uses a tray indicator that is compatible with most system trays on Linux.  This tray indicator can be used to quit the application, start a timer, or end a timer. Sleep mode  is represented with a moon icon. </p>
+<p>All communications with the tray is done using a local socket.  You do not need to understand how this works in order to use Starling. However,  you should avoid using local port 9999  since this is where the Starling messages are sent.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="command-mode"><a class="header" href="#command-mode">Command Mode</a></h1>
 <p>Command mode executes commands defined in the config file or window control actions ( minimizing, maximizing, open in, closing, focusing).</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="shell-mode"><a class="header" href="#shell-mode">Shell Mode</a></h1>
 <p>Shell mode executes user input as a shell command. Shell commands are sourced from the config file of the default shell. Therefore, aliases and functions can both be called from shell model with natural language names that the user can define.</p>
-<p>This functionality allows the power and flexibility of the shell in conjunction with natural language commands the user can define</p>
+<pre><code class="language-bash">## example: Saying &quot;dim&quot; will automatically lower system brightness
+## located in ~/.bashrc
+alias dim=&quot;xrandr --output eDP --brightness .3&quot;
+## example: Saying &quot;mute&quot; will automatically mute system volume
+alias mute=&quot;amixer -q sset Master toggle&quot;
+</code></pre>
+<p>This functionality allows the power and flexibility of the shell in conjunction with natural language commands the user can define. In order to gain the maximum flexibility from Starling,  users are encouraged to extend behavior in this way. </p>
+<p>Shell mode sources commands from the default shell. Therefore it should work with bash, zsh, fish, and more.</p>
+<h2 id="safety"><a class="header" href="#safety">Safety</a></h2>
+<p>By default, Starling  has a safety feature which will alert the user and give a warning before executing a command. This is since the shell is very powerful, it has the ability to manipulate many things on the system, even without root. However, the alert buffer time can be reduced in the config file if  it is a nuisance.</p>
+<p>Since Starling  sources from the confit file of the shell, there is no risk of calling arbitrary shell commands like <code>rm</code>  unless it is specifically aliased or used in a function within the config file.</p>
+<h3 id="indicator"><a class="header" href="#indicator">Indicator</a></h3>
+<p>Shell mode is represented with a green circle in the dock.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dictation-mode"><a class="header" href="#dictation-mode">Dictation Mode</a></h1>
-<p>Dictation mode executes all input as natural speech to text.</p>
+<p>Dictation mode executes all input as natural speech to text.
+Dictation mode is represented with a blue triangle icon in the dock.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="sleep-mode"><a class="header" href="#sleep-mode">Sleep mode</a></h1>
 <p>Sleep mode does not perform any action until it hears a command to switch the mode.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="sleep-mode-1"><a class="header" href="#sleep-mode-1">Sleep mode</a></h1>
-<p>Sleep mode does not perform any action until it hears a command to switch the mode.</p>
-<div style="break-before: page; page-break-before: always;"></div><p>This project is licensed GPLv3.</p>
-<h3 id="all-icons-in-cc-or-mit-license"><a class="header" href="#all-icons-in-cc-or-mit-license">All icons in CC or MIT license</a></h3>
+<p>However,  timers that the user created will still remain in effect unless disabled using the tray indicator or by giving the appropriate command <code>stop timer</code> in command mode.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="acknowledgements-and-licensing"><a class="header" href="#acknowledgements-and-licensing">Acknowledgements and Licensing</a></h2>
+<h3 id="all-icons-used-are-in-in-cc-or-mit-license"><a class="header" href="#all-icons-used-are-in-in-cc-or-mit-license">All icons used are in in CC or MIT license</a></h3>
 <p>Indicator for shell mode
 https://commons.wikimedia.org/wiki/File:Eo_circle_green_blank.svg
 GREEN_PATH = 'src/Assets/green.svg'</p>
@@ -171,7 +208,7 @@ BLUE_PATH = 'src/Assets/blue.svg'</p>
 <p>Indicator for sleep mode
 https://commons.wikimedia.org/wiki/File:Creative-Tail-Halloween-half-moon.svg
 SLEEP_PATH = 'src/Assets/moon1.svg'</p>
-<h3 id="all-code-in-mit-or-apache-license"><a class="header" href="#all-code-in-mit-or-apache-license">All code in MIT or Apache license.</a></h3>
+<h3 id="all-code-from-the-nvidia-nemo-toolkit-or-vosk-stt-has-been-used-in-an-mit-or-apache-license-which--can-be-found-in-their-respective-directories"><a class="header" href="#all-code-from-the-nvidia-nemo-toolkit-or-vosk-stt-has-been-used-in-an-mit-or-apache-license-which--can-be-found-in-their-respective-directories">All code from the Nvidia NeMo toolkit or Vosk STT has been used in an MIT or Apache license which  can be found in their respective directories.</a></h3>
 
                     </main>
 

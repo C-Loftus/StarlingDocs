@@ -23,16 +23,11 @@ body {
 code {
     font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
     font-size: 0.875em; /* please adjust the ace font size accordingly in editor.js */
-    white-space: pre;
 }
 
-kbd {
-    font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
-    font-size: 0.875em; /* please adjust the ace font size accordingly in editor.js */
-    padding: 1px 5px;
-    border: 1px solid;
-    border-radius: 5px;
-    white-space: pre;
+/* Don't change font size in headers. */
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
+    font-size: unset;
 }
 
 .left { float: left; }
@@ -97,7 +92,7 @@ h6:target::before {
 .content ul { line-height: 1.45em; }
 .content a { text-decoration: none; }
 .content a:hover { text-decoration: underline; }
-.content img { max-width: 100%; }
+.content img, .content video { max-width: 100%; }
 .content .header:link,
 .content .header:visited {
     color: var(--fg);
@@ -179,4 +174,8 @@ blockquote {
     color: var(--sidebar-fg);
     margin: 5px 0px;
     font-weight: bold;
+}
+
+.result-no-output {
+    font-style: italic;
 }

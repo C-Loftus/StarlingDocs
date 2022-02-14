@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html" class="active"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">8.</strong> Acknowledgements</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html" class="active"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="technical.html"><strong aria-hidden="true">8.</strong> Technical Design</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">9.</strong> Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -138,17 +138,17 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="command-mode"><a class="header" href="#command-mode">Command Mode</a></h1>
-<p>Command mode executes key presses, commands defined in the config file,  shorter dictations, or window control commands.</p>
+<p>Command mode executes key presses, commands defined in the config file,  short dictations, or window control commands. Command mode is indicated with an orange icon on the system tray.</p>
 <h2 id="dictations-without-switching-mode"><a class="header" href="#dictations-without-switching-mode">Dictations Without Switching Mode</a></h2>
-<p>sometimes you will want to dictate short sentences without needing to switch mode two dictation mode. If you want this behavior say <code>sentence</code>  before the words you wish to say.</p>
-<pre><code class="language-toml">#example to print the words &quot;this is a test that will be input as text  even in command mode
-sentence this is a test that will be input as text even in command mode
+<p>Sometimes you will want to dictate short sentences without needing to switch mode two dictation mode. If you want this behavior say <code>sentence</code>  before the words you wish to say.</p>
+<pre><code class="language-toml"># prints the words &quot;test of dictating text even in command mode&quot;
+sentence test of dictating text even in command mode
 </code></pre>
 <h4 id="help"><a class="header" href="#help">Help</a></h4>
 <p>If you do not know the official name of the application you wish to define custom shortcuts for, run the following command and then click on the window you wish to know the name of.  The sleep command is needed so it doesn't just give you the name of the terminal before you can click off it.</p>
 <pre><code class="language-bash">sleep 3; xdotool getactivewindow getwindowname
 </code></pre>
-<p>xdotool   should already be installed once you install starling. this command above will give you the name of the window that you should put in the config file.</p>
+<p>xdotool  should already be installed once you install starling. this command above will give you the name of the window that you should put in the config file.</p>
 
                     </main>
 

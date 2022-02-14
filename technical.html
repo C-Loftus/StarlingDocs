@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Dictation Mode - Starling Documentation</title>
+        <title>Technical Design - Starling Documentation</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html" class="active"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="technical.html"><strong aria-hidden="true">8.</strong> Technical Design</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">9.</strong> Acknowledgements</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="technical.html" class="active"><strong aria-hidden="true">8.</strong> Technical Design</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">9.</strong> Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,18 +137,38 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="dictation-mode"><a class="header" href="#dictation-mode">Dictation Mode</a></h1>
-<p>Dictation mode executes all input as natural speech to text.
-Dictation mode is represented with a blue triangle icon in the dock.</p>
+                        <h2 id="technical-background"><a class="header" href="#technical-background">Technical Background</a></h2>
+<p>Starling has five main parts of its technical design.</p>
+<ul>
+<li>Non-blocking sound recording</li>
+<li>Speech to text decoding </li>
+<li>Parsing commands from decoded text</li>
+<li>The command runner</li>
+<li>The system tray appindicator program</li>
+</ul>
+<h3 id="non-blocking-sound-recording"><a class="header" href="#non-blocking-sound-recording">Non-blocking sound recording</a></h3>
+<p>There are two implementations of sound recording depending upon which  speech to text model you are using</p>
+<h4 id="vosk"><a class="header" href="#vosk">Vosk</a></h4>
+<p>Vosk records using an ffmpeg stream. It continuously feeds this stream to the model and  only outputs text once it has reached a confidence threshold that indicates the end of a word.</p>
+<h4 id="nvidia-nemo"><a class="header" href="#nvidia-nemo">Nvidia Nemo</a></h4>
+<p>I experimented with an alternative solution for passing sound to nemo.  in my solution, I begin by spawning a background thread.  This thread gets the ambient volume of the environment.  I then spawn a listener thread. This thread continuously records sound updates to a small buffer. It checks to see if there has been a increase from the ambient volume. If there has been, it will begin recording audio from the user.  it will stop recording once the volume drops  back near the ambient volume. </p>
+<p>In this implementation, I used a buffer since you cannot simply start recording when the volume goes high. If you do that,  the start of the first word that is spoken will be partially cut off due to latency. The buffer allows you two go back slightly in time before the ambient volume difference check was triggered. </p>
+<h3 id="speech-to-text"><a class="header" href="#speech-to-text">Speech to Text</a></h3>
+<p>Starling is built upon the <a href="https://alphacephei.com/vosk/">Vosk speech recognition toolkit</a>. The model used is the <a href="https://alphacephei.com/vosk/models">vosk-model-small-en-us-0.15</a>. This model is 40M is size and its vocabulary can be dynamically changed during runtime. This allows me to switch the vocabulary  depending upon the currently focused application. </p>
+<p>You can install Nvidia's nemo toolkit if you want an alternative speech to text backend and prefer not to use Vosk. As of right now, this is for testing purposes and Vosk  should be preferred.</p>
+<pre><code class="language-bash"># run the following command from the project makefile
+# downloads model and installs nemo_toolkit[all]
+make dev
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="shell.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="sleep.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="sleep.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="acknowledgments.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -157,10 +177,10 @@ Dictation mode is represented with a blue triangle icon in the dock.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="shell.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="sleep.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="sleep.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="acknowledgments.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

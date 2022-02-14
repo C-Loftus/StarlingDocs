@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html" class="active"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">8.</strong> Acknowledgements</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html" class="active"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">8.</strong> Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -139,92 +139,10 @@
                     <main>
                         <h1 id="command-mode"><a class="header" href="#command-mode">Command Mode</a></h1>
 <p>Command mode executes key presses, commands defined in the config file,  shorter dictations, or window control commands.</p>
-<h2 id="raw-keyboard-input"><a class="header" href="#raw-keyboard-input">Raw Keyboard Input</a></h2>
-<p>Raw input from the keyboard is the easiest way to control your computer with Starling. Simply say the name of the keys that you wish to press.</p>
-<p>You can press any keyboard combination by saying the name of a key. Since many of the letters  of the alphabet are very similar, Starling defines an alphabet in the config file. For instance 
-<code>super cap</code> will  be decoded as a press of super and c at the same time. 
-the following is the alphabet as it is defined in the default config file, config.toml in the Starling project root directory.
-You can change any of these key value pairs to a different word if you  prefer the use of other words.</p>
-<pre><code class="language-yaml">alphabet: 
-  - air       : &quot;a&quot; 
-  - bat       : &quot;b&quot; 
-  - cap       : &quot;c&quot; 
-  - drum      : &quot;d&quot; 
-  - each      : &quot;e&quot; 
-  - fine      : &quot;f&quot; 
-  - gust      : &quot;g&quot; 
-  - harp      : &quot;h&quot; 
-  - sit       : &quot;i&quot; 
-  - jury      : &quot;j&quot; 
-  - crunch    : &quot;k&quot; 
-  - look      : &quot;l&quot; 
-  - made      : &quot;m&quot; 
-  - near      : &quot;n&quot; 
-  - odd       : &quot;o&quot; 
-  - pit       : &quot;p&quot; 
-  - quench    : &quot;q&quot; 
-  - red       : &quot;r&quot; 
-  - sun       : &quot;s&quot; 
-  - trap      : &quot;t&quot; 
-  - urge      : &quot;u&quot; 
-  - vest      : &quot;v&quot; 
-  - whale     : &quot;w&quot; 
-  - plex      : &quot;x&quot; 
-  - yank      : &quot;y&quot; 
-  - zip       : &quot;z&quot;    
-  - enter     : &quot;enter&quot;
-  - escape    : &quot;escape&quot;
-  - home      : &quot;home&quot;
-</code></pre>
-<h2 id="window-commands"><a class="header" href="#window-commands">Window Commands</a></h2>
-<p>window commands are the  second type of commands built into command mode. 
-Window comands can  launch ,  close, maximize, minimize, or focus a window. Window command syntax is as follows</p>
-<pre><code>(window_action) (window_target)
-</code></pre>
-<h4 id="window-actions"><a class="header" href="#window-actions">Window Actions</a></h4>
-<ul>
-<li><code>start</code></li>
-<li><code>close</code></li>
-<li><code>maximize</code></li>
-<li><code>minimize</code></li>
-<li><code>focus</code></li>
-</ul>
-<h4 id="window-targets"><a class="header" href="#window-targets">Window Targets</a></h4>
-<p>the best way to achieve maximum accuracy with window targets is to define alias is in the  config file. This is since there are many programs on Linux with unnatural sounding names. For instance, it is much quicker and more natural to say <code>terminal</code>  instead of <code>urxvt</code>.</p>
-<p>if you wish to launch a  window based on its name, you must define the <code>exe_path</code>  for the application in the config file. Otherwise, Starling does not know where you want to launch the application from.</p>
-<p>The built in alias <code>this</code>  will always alias to the currently focused window.</p>
-<pre><code class="language-bash">#  Example  when firefox is the currently focused window
-#  this command will minimize firefox
-minimize this
-</code></pre>
-<p>You can define your own aliases in the config file by specifying a key and a application name that corresponds to it.  It is best to pick key names that are simple and distinct. This improves accuracy and reduces command length.</p>
 <h2 id="dictations-without-switching-mode"><a class="header" href="#dictations-without-switching-mode">Dictations Without Switching Mode</a></h2>
 <p>sometimes you will want to dictate short sentences without needing to switch mode two dictation mode. If you want this behavior say <code>sentence</code>  before the words you wish to say.</p>
 <pre><code class="language-toml">#example to print the words &quot;this is a test that will be input as text  even in command mode
 sentence this is a test that will be input as text even in command mode
-</code></pre>
-<h2 id="custom-natural-language-shortcuts"><a class="header" href="#custom-natural-language-shortcuts">Custom Natural Language Shortcuts</a></h2>
-<p>If you wish to define custom commands, it can be easily done in the config file. All you need to do is give the name of the application and list of key value pairs.
-In order to avoid commands being miscategorized as window actions or key presses, you should avoid any of the window action keywords or words you have defined to be in your alphabet.</p>
-<h4 id="a-bad-example"><a class="header" href="#a-bad-example">A Bad Example</a></h4>
-<pre><code class="language-yaml"># AVOID COMMANDS LIKE THIS
-Google Chrome:
-#  focus is a window action keyword so it should be avoided.
-- focus tab: &quot;ctrl \t&quot;
-#  air and cap correspond to  key presses of &quot;a&quot; and &quot;c&quot; respectively in the predefined alphabet.
-- air cap: &quot;alt left&quot;
-</code></pre>
-<h4 id="a-good-example"><a class="header" href="#a-good-example">A Good Example</a></h4>
-<pre><code class="language-yaml">#  Good examples for mozilla firefox
-Mozilla Firefox:
-- exe_path : &quot;firefox&quot;
-- go foward: &quot;alt right&quot;
-- go back: &quot;alt left&quot;
-- next tab: &quot;ctrl \t&quot;
-- private tab: &quot;ctrl shift p&quot;
-- new bookmark: &quot;ctrl d&quot;
-- search bar: &quot;ctrl j&quot;
-- fold window: &quot;ctrl w&quot;
 </code></pre>
 <h4 id="help"><a class="header" href="#help">Help</a></h4>
 <p>If you do not know the official name of the application you wish to define custom shortcuts for, run the following command and then click on the window you wish to know the name of.  The sleep command is needed so it doesn't just give you the name of the terminal before you can click off it.</p>
@@ -239,7 +157,7 @@ Mozilla Firefox:
                             <a rel="prev" href="global.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="shell.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="keys.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -251,7 +169,7 @@ Mozilla Firefox:
                     <a rel="prev" href="global.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="shell.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="keys.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

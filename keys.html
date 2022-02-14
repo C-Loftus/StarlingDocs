@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Installing - Starling Documentation</title>
+        <title>Keypresses - Starling Documentation</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html" class="active"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">8.</strong> Acknowledgements</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html" class="active"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">8.</strong> Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,35 +137,52 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="intallation"><a class="header" href="#intallation">Intallation</a></h1>
-<h2 id="downloading-the-code"><a class="header" href="#downloading-the-code">Downloading the Code</a></h2>
-<p>You can either download  the project from GitHub as a zip file or clone it with Git. It  is recommended to do the latter  in order to stay up to date with any project changes or bug fixes. You  must have Git  installed in order to run this command.</p>
-<pre><code class="language-bash">git clone https://github.com/C-Loftus/Starling
-</code></pre>
-<h2 id="building"><a class="header" href="#building">Building</a></h2>
-<p>Once you have downloaded the code, you can then begin the process of setting it up.
-You must have python3, pip3, and make installed. These should already be installed on most distributions. 
-To build, type either your package manager name or OS name. (i.e. <code>ubuntu</code>, <code>pop-os</code>, <code>apt</code> all build the same)</p>
-<pre><code>make ubuntu 
-</code></pre>
-<p>The installation process will install all python dependencies and download the model used for voice recognition.</p>
-<p>To uninstall</p>
-<pre><code>make uninstall
-</code></pre>
-<h2 id="running"><a class="header" href="#running">Running</a></h2>
-<p>pipenv installs all python packages for Starling in its own separate folder. That way they will not conflict with your existing python environments. <code>pipenv</code> before the command will run it in this environment.</p>
-<pre><code class="language-bash">cd Starling
-pipenv python3 src/main.py
+                        <h2 id="raw-keyboard-input"><a class="header" href="#raw-keyboard-input">Raw Keyboard Input</a></h2>
+<p>Raw input from the keyboard is the easiest way to control your computer with Starling. Simply say the name of the keys that you wish to press.</p>
+<p>You can press any keyboard combination by saying the name of a key. Since many of the letters  of the alphabet are very similar, Starling defines an alphabet in the config file. For instance 
+<code>super cap</code> will  be decoded as a press of super and c at the same time. 
+the following is the alphabet as it is defined in the default config file, config.toml in the Starling project root directory.
+You can change any of these key value pairs to a different word if you  prefer the use of other words.</p>
+<pre><code class="language-yaml">alphabet: 
+  - air       : &quot;a&quot; 
+  - bat       : &quot;b&quot; 
+  - cap       : &quot;c&quot; 
+  - drum      : &quot;d&quot; 
+  - each      : &quot;e&quot; 
+  - fine      : &quot;f&quot; 
+  - gust      : &quot;g&quot; 
+  - harp      : &quot;h&quot; 
+  - sit       : &quot;i&quot; 
+  - jury      : &quot;j&quot; 
+  - crunch    : &quot;k&quot; 
+  - look      : &quot;l&quot; 
+  - made      : &quot;m&quot; 
+  - near      : &quot;n&quot; 
+  - odd       : &quot;o&quot; 
+  - pit       : &quot;p&quot; 
+  - quench    : &quot;q&quot; 
+  - red       : &quot;r&quot; 
+  - sun       : &quot;s&quot; 
+  - trap      : &quot;t&quot; 
+  - urge      : &quot;u&quot; 
+  - vest      : &quot;v&quot; 
+  - whale     : &quot;w&quot; 
+  - plex      : &quot;x&quot; 
+  - yank      : &quot;y&quot; 
+  - zip       : &quot;z&quot;    
+  - enter     : &quot;enter&quot;
+  - escape    : &quot;escape&quot;
+  - home      : &quot;home&quot;
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="about.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="command.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="global.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="window.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -174,10 +191,10 @@ pipenv python3 src/main.py
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="about.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="command.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="global.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="window.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

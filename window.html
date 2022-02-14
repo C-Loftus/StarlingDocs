@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Installing - Starling Documentation</title>
+        <title>Window Commands - Starling Documentation</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html" class="active"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">8.</strong> Acknowledgements</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html" class="active"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">8.</strong> Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,35 +137,37 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="intallation"><a class="header" href="#intallation">Intallation</a></h1>
-<h2 id="downloading-the-code"><a class="header" href="#downloading-the-code">Downloading the Code</a></h2>
-<p>You can either download  the project from GitHub as a zip file or clone it with Git. It  is recommended to do the latter  in order to stay up to date with any project changes or bug fixes. You  must have Git  installed in order to run this command.</p>
-<pre><code class="language-bash">git clone https://github.com/C-Loftus/Starling
+                        <h2 id="window-commands"><a class="header" href="#window-commands">Window Commands</a></h2>
+<p>window commands are the  second type of commands built into command mode. 
+Window comands can  launch ,  close, maximize, minimize, or focus a window. Window command syntax is as follows</p>
+<pre><code>(window_action) (window_target)
 </code></pre>
-<h2 id="building"><a class="header" href="#building">Building</a></h2>
-<p>Once you have downloaded the code, you can then begin the process of setting it up.
-You must have python3, pip3, and make installed. These should already be installed on most distributions. 
-To build, type either your package manager name or OS name. (i.e. <code>ubuntu</code>, <code>pop-os</code>, <code>apt</code> all build the same)</p>
-<pre><code>make ubuntu 
+<h4 id="window-actions"><a class="header" href="#window-actions">Window Actions</a></h4>
+<ul>
+<li><code>start</code></li>
+<li><code>close</code></li>
+<li><code>maximize</code></li>
+<li><code>minimize</code></li>
+<li><code>focus</code></li>
+</ul>
+<h4 id="window-targets"><a class="header" href="#window-targets">Window Targets</a></h4>
+<p>the best way to achieve maximum accuracy with window targets is to define alias is in the  config file. This is since there are many programs on Linux with unnatural sounding names. For instance, it is much quicker and more natural to say <code>terminal</code>  instead of <code>urxvt</code>.</p>
+<p>if you wish to launch a  window based on its name, you must define the <code>exe_path</code>  for the application in the config file. Otherwise, Starling does not know where you want to launch the application from.</p>
+<p>The built in alias <code>this</code>  will always alias to the currently focused window.</p>
+<pre><code class="language-bash">#  Example  when firefox is the currently focused window
+#  this command will minimize firefox
+minimize this
 </code></pre>
-<p>The installation process will install all python dependencies and download the model used for voice recognition.</p>
-<p>To uninstall</p>
-<pre><code>make uninstall
-</code></pre>
-<h2 id="running"><a class="header" href="#running">Running</a></h2>
-<p>pipenv installs all python packages for Starling in its own separate folder. That way they will not conflict with your existing python environments. <code>pipenv</code> before the command will run it in this environment.</p>
-<pre><code class="language-bash">cd Starling
-pipenv python3 src/main.py
-</code></pre>
+<p>You can define your own aliases in the config file by specifying a key and a application name that corresponds to it.  It is best to pick key names that are simple and distinct. This improves accuracy and reduces command length.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="about.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="keys.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="global.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="custom.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -174,10 +176,10 @@ pipenv python3 src/main.py
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="about.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="keys.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="global.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="custom.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

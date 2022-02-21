@@ -156,7 +156,7 @@
 <li>generalizable behavior that can control the entire system</li>
 <li>a clear and verifiable policy of no data collection</li>
 <li>clear documentation for customizing</li>
-<li>easy for new users</li>
+<li>intuitive behavior for new users</li>
 <li>full support on many Linux distributions</li>
 <li>free and open source licensing</li>
 </ul>
@@ -172,7 +172,8 @@
 <p>Once you have downloaded the code, you can then begin the process of setting it up.
 You must have python3, pip3, and make installed. These should already be installed on most distributions. 
 To build, type either your package manager name or OS name. (i.e. <code>ubuntu</code>, <code>pop-os</code>, <code>apt</code> all build the same)</p>
-<pre><code>make ubuntu 
+<pre><code>cd Starling
+make ubuntu 
 </code></pre>
 <p>The installation process will install all python dependencies and download the model used for voice recognition.</p>
 <p>To uninstall</p>
@@ -201,16 +202,22 @@ pipenv run python3 src/main.py
 <p>All communications with the tray is done using a local socket.  You do not need to understand how this works in order to use Starling. However,  you should avoid using local port 9999  since this is where the Starling messages are sent.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="command-mode"><a class="header" href="#command-mode">Command Mode</a></h1>
 <p>Command mode executes key presses, commands defined in the config file,  short dictations, or window control commands. Command mode is indicated with an orange icon on the system tray.</p>
+<h2 id="usage-and-customizing"><a class="header" href="#usage-and-customizing">Usage and customizing</a></h2>
+<p>Starling comes with a sample config file. If you just want to use keyboard commands you do not need to modified anything. If you want to use custom natural language commands, you will need to edit the <a href="../../config.yaml">config file</a> to include the applications you will be using and what words you wish to do what actions.</p>
+<p>When setting up the config file  you will need to know the names of the applications as they appear to the OS. If you do not know this, you use a <a href="../../get_app_name.sh">script</a></p>
+<pre><code class="language-bash">cd Starling
+# use chmod to make sure it is executable. Only need to do this once
+chmod +x get_app_name.sh
+./get_app_name.sh
+</code></pre>
+<p>This simple script  will print out the name the application as it will be read in the config file. For more detail on how to use these names to customize, please see <a href="custom.html">the custom chapter</a>.</p>
 <h2 id="dictations-without-switching-mode"><a class="header" href="#dictations-without-switching-mode">Dictations Without Switching Mode</a></h2>
 <p>Sometimes you will want to dictate short sentences without needing to switch mode two dictation mode. If you want this behavior say <code>sentence</code>  before the words you wish to say.</p>
 <pre><code class="language-toml"># prints the words &quot;test of dictating text even in command mode&quot;
 sentence test of dictating text even in command mode
 </code></pre>
 <h4 id="help-1"><a class="header" href="#help-1">Help</a></h4>
-<p>If you do not know the official name of the application you wish to define custom shortcuts for, run the following command and then click on the window you wish to know the name of.  The sleep command is needed so it doesn't just give you the name of the terminal before you can click off it.</p>
-<pre><code class="language-bash">sleep 3; xdotool getactivewindow getwindowname
-</code></pre>
-<p>xdotool  should already be installed once you install starling. this command above will give you the name of the window that you should put in the config file.</p>
+<p>Please free </p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="raw-keyboard-input"><a class="header" href="#raw-keyboard-input">Raw Keyboard Input</a></h2>
 <p>Raw input from the keyboard is the easiest way to control your computer with Starling. Simply say the name of the keys that you wish to press.</p>
 <p>You can press any keyboard combination by saying the name of a key. Since many of the letters  of the alphabet are very similar, Starling defines an alphabet in the config file. For instance 
@@ -272,7 +279,14 @@ minimize this
 <p>You can define your own aliases in the config file by specifying a key and a application name that corresponds to it.  It is best to pick key names that are simple and distinct. This improves accuracy and reduces command length.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="custom-natural-language-shortcuts"><a class="header" href="#custom-natural-language-shortcuts">Custom Natural Language Shortcuts</a></h2>
 <p>If you wish to define custom commands, it can be easily done in the config file. All you need to do is give the name of the application and list of key value pairs.
-In order to avoid commands being miscategorized as window actions or key presses, you should avoid any of the window action keywords or words you have defined to be in your alphabet.</p>
+In order to avoid commands being miscategorized as window actions or key presses, you should avoid any of the window action keywords or words you have defined to be in your alphabet.
+You should also refer to applications by their aliases  as they are defined in the config file. This reduces any miscategorization chance,  especially with applications that have unusual names.</p>
+<p>The  config file is set up as follows</p>
+<ul>
+<li>aliases to app names</li>
+<li>app names as they are seen by the os</li>
+<li>natural language commands which are ran in the context only when a window with that app name is focused</li>
+</ul>
 <h4 id="a-bad-example"><a class="header" href="#a-bad-example">A Bad Example</a></h4>
 <pre><code class="language-yaml"># AVOID COMMANDS LIKE THIS
 Google Chrome:
@@ -293,6 +307,8 @@ Mozilla Firefox:
 - search bar: &quot;ctrl j&quot;
 - fold window: &quot;ctrl w&quot;
 </code></pre>
+<h4 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h4>
+<p>I recommend using an editor  like visual studio code in order to make sure you don't have any errors in your yaml syntax. yaml is parsed  in any order but I recommend keeping the order as it is defined in the given sample config. Namely, aliases, names, then commands.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="shell-mode"><a class="header" href="#shell-mode">Shell Mode</a></h1>
 <p>Shell mode executes user input as a shell command. Shell commands are sourced from the config file of the default shell. Therefore, aliases and functions can both be called from shell model with natural language names that the user can define.</p>
 <pre><code class="language-bash">## example: Saying &quot;dim&quot; will automatically lower system brightness

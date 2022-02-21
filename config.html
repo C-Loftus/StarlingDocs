@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Shell Mode - Starling Documentation</title>
+        <title>Sample Config - Starling Documentation</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config.html"><strong aria-hidden="true">4.3.1.</strong> Sample Config</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="shell.html" class="active"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="technical.html"><strong aria-hidden="true">8.</strong> Technical Design</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">9.</strong> Acknowledgements</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config.html" class="active"><strong aria-hidden="true">4.3.1.</strong> Sample Config</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="technical.html"><strong aria-hidden="true">8.</strong> Technical Design</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">9.</strong> Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,30 +137,122 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="shell-mode"><a class="header" href="#shell-mode">Shell Mode</a></h1>
-<p>Shell mode executes user input as a shell command. Shell commands are sourced from the config file of the default shell. Therefore, aliases and functions can both be called from shell model with natural language names that the user can define.</p>
-<pre><code class="language-bash">## example: Saying &quot;dim&quot; will automatically lower system brightness
-## located in ~/.bashrc
-alias dim=&quot;xrandr --output eDP --brightness .3&quot;
-## example: Saying &quot;mute&quot; will automatically mute system volume
-alias mute=&quot;amixer -q sset Master toggle&quot;
+                        <h2 id="sample-config"><a class="header" href="#sample-config">Sample Config</a></h2>
+<p>This is a sample config file and is the same one contained within the Github repository.</p>
+<pre><code class="language-yaml">###  it is recommended to edit in an editor like visual studio code to make sure
+### yaml syntax is correct
+
+
+################# APPLICATION REFERENCE NAMES ##########
+# easy alias names allow for better accuracy
+editor: &quot;Visual Studio Code&quot;
+terminal: &quot;Kitty&quot;
+browser: &quot;Mozilla Firefox&quot;
+game: &quot;&quot;
+slides: &quot;&quot;
+
+
+############ USER APPLICATIONS NATURAL LANGUAGE COMMANDS ##########
+
+# SYNTAX:
+
+# APPLICATON_NAME:
+# - exe_path: &quot;/bin/example&quot;
+# - command: &quot;ctrl alt del&quot;
+
+### Names of potential keys you can input: 
+# ['\t', '\n', '\r', ' ', '!', '&quot;', '#', '$', '%', '&amp;', &quot;'&quot;, '(', ')', '*', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '&lt;', '=', '&gt;', '?', '@', '[', '\\', ']', '^', '_', '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~', 'accept', 'add', 'alt', 'altleft', 'altright', 'apps', 'backspace', 'browserback', 'browserfavorites', 'browserforward', 'browserhome', 'browserrefresh', 'browsersearch', 'browserstop', 'capslock', 'clear', 'convert', 'ctrl', 'ctrlleft', 'ctrlright', 'decimal', 'del', 'delete', 'divide', 'down', 'end', 'enter', 'esc', 'escape', 'execute', 'f1', 'f10', 'f11', 'f12', 'f13', 'f14', 'f15', 'f16', 'f17', 'f18', 'f19', 'f2', 'f20', 'f21', 'f22', 'f23', 'f24', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'final', 'fn', 'hanguel', 'hangul', 'hanja', 'help', 'home', 'insert', 'junja', 'kana', 'kanji', 'launchapp1', 'launchapp2', 'launchmail', 'launchmediaselect', 'left', 'modechange', 'multiply', 'nexttrack', 'nonconvert', 'num0', 'num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9', 'numlock', 'pagedown', 'pageup', 'pause', 'pgdn', 'pgup', 'playpause', 'prevtrack', 'print', 'printscreen', 'prntscrn', 'prtsc', 'prtscr', 'return', 'right', 'scrolllock', 'select', 'separator', 'shift', 'shiftleft', 'shiftright', 'sleep', 'space', 'stop', 'subtract', 'tab', 'up', 'volumedown', 'volumemute', 'volumeup', 'win', 'winleft', 'winright', 'yen', 'command', 'option', 'optionleft', 'optionright']
+
+Mozilla Firefox:
+- exe_path : &quot;firefox&quot;
+- go foward: &quot;alt right&quot;
+- go back: &quot;alt left&quot;
+- next tab: &quot;ctrl \t&quot;
+- private tab: &quot;ctrl shift p&quot;
+- new bookmark: &quot;ctrl d&quot;
+- search bar: &quot;ctrl j&quot;
+- fold window: &quot;ctrl w&quot;
+
+Visual Studio Code:
+- exe_path : &quot;code&quot;
+- new command: &quot;ctrl shift p&quot;
+
+Kitty:
+- exe_path : &quot;kitty&quot;
+- split window: &quot;ctrl shift enter&quot;
+
+################### ALHPABET &amp; KEY NAMES ######################
+#### these change be changed to any single word value 
+#### that does not conflict with another command
+
+## if you try to use a word that is not in english vocab,
+## the model will not recognize it.
+alphabet: 
+  - air       : &quot;a&quot; 
+  - bat       : &quot;b&quot; 
+  - cap       : &quot;c&quot; 
+  - drum      : &quot;d&quot; 
+  - each      : &quot;e&quot; 
+  - fine      : &quot;f&quot; 
+  - gust      : &quot;g&quot; 
+  - harp      : &quot;h&quot; 
+  - sit       : &quot;i&quot; 
+  - jury      : &quot;j&quot; 
+  - crunch    : &quot;k&quot; 
+  - look      : &quot;l&quot; 
+  - made      : &quot;m&quot; 
+  - near      : &quot;n&quot; 
+  - odd       : &quot;o&quot; 
+  - pit       : &quot;p&quot; 
+  - quench    : &quot;q&quot; 
+  - red       : &quot;r&quot; 
+  - sun       : &quot;s&quot; 
+  - trap      : &quot;t&quot; 
+  - urge      : &quot;u&quot; 
+  - vest      : &quot;v&quot; 
+  - whale     : &quot;w&quot; 
+  - plex      : &quot;x&quot; 
+  - yank      : &quot;y&quot; 
+  - zip       : &quot;z&quot;    
+  - enter     : &quot;enter&quot;
+  - escape    : &quot;escape&quot;
+  - home      : &quot;home&quot;
+  - down      : &quot;pagedown&quot;
+  - up        : &quot;pageup&quot;
+  - back : &quot;backspace&quot;
+  - delete    : &quot;delete&quot;
+  - quieter   : 'volumedown'
+  - mute      : 'volumemute'
+  - louder    : 'volumeup'
+
+################TIMER INFO#######################
+time_before_break: 20 #minutes
+shell_safety_duration: 5 #seconds
+
+##################################################
+### ONLY EDIT BELOW IF YOU WANT A CUSTOM MODEL ###
+##################################################
+models:
+- default: vosk
+- nvidia_nemo:
+    - model_path: &quot;src/nvidia/stt_en_conformer_ctc_medium.nemo&quot;
+    - pretrained_name: &quot;stt_en_conformer_ctc_medium&quot;
+    - cuda : -1
+    - audio_dir : &quot;Assets/&quot;
+    - audio_type : &quot;wav&quot;
+    - batch_size : 12 
+- vosk:
+  - type: &quot;https://alphacephei.com/vosk/models/vosk-model-en-us-0.22.zip&quot;
 </code></pre>
-<p>This functionality allows the power and flexibility of the shell in conjunction with natural language commands the user can define. In order to gain the maximum flexibility from Starling,  users are encouraged to extend behavior in this way. </p>
-<p>Shell mode sources commands from the default shell. Therefore it should work with bash, zsh, fish, and more.</p>
-<h2 id="safety"><a class="header" href="#safety">Safety</a></h2>
-<p>By default, Starling  has a safety feature which will alert the user and give a warning before executing a command. This is since the shell is very powerful, it has the ability to manipulate many things on the system, even without root. However, the alert buffer time can be reduced in the config file if  it is a nuisance.</p>
-<p>Since Starling  sources from the confit file of the shell, there is no risk of calling arbitrary shell commands like <code>rm</code>  unless it is specifically aliased or used in a function within the config file.</p>
-<h3 id="indicator"><a class="header" href="#indicator">Indicator</a></h3>
-<p>Shell mode is represented with a green circle in the dock.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="config.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="custom.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="dictation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="shell.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -169,10 +261,10 @@ alias mute=&quot;amixer -q sset Master toggle&quot;
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="config.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="custom.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="dictation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="shell.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

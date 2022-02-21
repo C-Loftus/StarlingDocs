@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="technical.html"><strong aria-hidden="true">8.</strong> Technical Design</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">9.</strong> Acknowledgements</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="installing.html"><strong aria-hidden="true">2.</strong> Installing</a></li><li class="chapter-item expanded "><a href="global.html"><strong aria-hidden="true">3.</strong> Global Behavior</a></li><li class="chapter-item expanded "><a href="command.html"><strong aria-hidden="true">4.</strong> Command Mode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="keys.html"><strong aria-hidden="true">4.1.</strong> Keypresses</a></li><li class="chapter-item expanded "><a href="window.html"><strong aria-hidden="true">4.2.</strong> Window Commands</a></li><li class="chapter-item expanded "><a href="custom.html"><strong aria-hidden="true">4.3.</strong> Custom Commands</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config.html"><strong aria-hidden="true">4.3.1.</strong> Sample Config</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="shell.html"><strong aria-hidden="true">5.</strong> Shell Mode</a></li><li class="chapter-item expanded "><a href="dictation.html"><strong aria-hidden="true">6.</strong> Dictation Mode</a></li><li class="chapter-item expanded "><a href="sleep.html"><strong aria-hidden="true">7.</strong> Sleep Mode</a></li><li class="chapter-item expanded "><a href="technical.html"><strong aria-hidden="true">8.</strong> Technical Design</a></li><li class="chapter-item expanded "><a href="acknowledgments.html"><strong aria-hidden="true">9.</strong> Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -203,8 +203,8 @@ pipenv run python3 src/main.py
 <div style="break-before: page; page-break-before: always;"></div><h1 id="command-mode"><a class="header" href="#command-mode">Command Mode</a></h1>
 <p>Command mode executes key presses, commands defined in the config file,  short dictations, or window control commands. Command mode is indicated with an orange icon on the system tray.</p>
 <h2 id="usage-and-customizing"><a class="header" href="#usage-and-customizing">Usage and customizing</a></h2>
-<p>Starling comes with a sample config file. If you just want to use keyboard commands you do not need to modified anything. If you want to use custom natural language commands, you will need to edit the <a href="../../config.yaml">config file</a> to include the applications you will be using and what words you wish to do what actions.</p>
-<p>When setting up the config file  you will need to know the names of the applications as they appear to the OS. If you do not know this, you use a <a href="../../get_app_name.sh">script</a></p>
+<p>Starling comes with a sample config file. If you just want to use keyboard commands you do not need to modified anything. If you want to use custom natural language commands, you will need to edit the config file to include the applications you will be using and what words you wish to do what actions.</p>
+<p>When setting up the config file  you will need to know the names of the applications as they appear to the OS. If you do not know this, you can use a provided script.</p>
 <pre><code class="language-bash">cd Starling
 # use chmod to make sure it is executable. Only need to do this once
 chmod +x get_app_name.sh
@@ -217,7 +217,7 @@ chmod +x get_app_name.sh
 sentence test of dictating text even in command mode
 </code></pre>
 <h4 id="help-1"><a class="header" href="#help-1">Help</a></h4>
-<p>Please free </p>
+<p>Please feel free to submit any issues on <a href="https://github.com/C-Loftus/Starling/issues">Github</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="raw-keyboard-input"><a class="header" href="#raw-keyboard-input">Raw Keyboard Input</a></h2>
 <p>Raw input from the keyboard is the easiest way to control your computer with Starling. Simply say the name of the keys that you wish to press.</p>
 <p>You can press any keyboard combination by saying the name of a key. Since many of the letters  of the alphabet are very similar, Starling defines an alphabet in the config file. For instance 
@@ -309,6 +309,113 @@ Mozilla Firefox:
 </code></pre>
 <h4 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h4>
 <p>I recommend using an editor  like visual studio code in order to make sure you don't have any errors in your yaml syntax. yaml is parsed  in any order but I recommend keeping the order as it is defined in the given sample config. Namely, aliases, names, then commands.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="sample-config"><a class="header" href="#sample-config">Sample Config</a></h2>
+<p>This is a sample config file and is the same one contained within the Github repository.</p>
+<pre><code class="language-yaml">###  it is recommended to edit in an editor like visual studio code to make sure
+### yaml syntax is correct
+
+
+################# APPLICATION REFERENCE NAMES ##########
+# easy alias names allow for better accuracy
+editor: &quot;Visual Studio Code&quot;
+terminal: &quot;Kitty&quot;
+browser: &quot;Mozilla Firefox&quot;
+game: &quot;&quot;
+slides: &quot;&quot;
+
+
+############ USER APPLICATIONS NATURAL LANGUAGE COMMANDS ##########
+
+# SYNTAX:
+
+# APPLICATON_NAME:
+# - exe_path: &quot;/bin/example&quot;
+# - command: &quot;ctrl alt del&quot;
+
+### Names of potential keys you can input: 
+# ['\t', '\n', '\r', ' ', '!', '&quot;', '#', '$', '%', '&amp;', &quot;'&quot;, '(', ')', '*', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '&lt;', '=', '&gt;', '?', '@', '[', '\\', ']', '^', '_', '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~', 'accept', 'add', 'alt', 'altleft', 'altright', 'apps', 'backspace', 'browserback', 'browserfavorites', 'browserforward', 'browserhome', 'browserrefresh', 'browsersearch', 'browserstop', 'capslock', 'clear', 'convert', 'ctrl', 'ctrlleft', 'ctrlright', 'decimal', 'del', 'delete', 'divide', 'down', 'end', 'enter', 'esc', 'escape', 'execute', 'f1', 'f10', 'f11', 'f12', 'f13', 'f14', 'f15', 'f16', 'f17', 'f18', 'f19', 'f2', 'f20', 'f21', 'f22', 'f23', 'f24', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'final', 'fn', 'hanguel', 'hangul', 'hanja', 'help', 'home', 'insert', 'junja', 'kana', 'kanji', 'launchapp1', 'launchapp2', 'launchmail', 'launchmediaselect', 'left', 'modechange', 'multiply', 'nexttrack', 'nonconvert', 'num0', 'num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9', 'numlock', 'pagedown', 'pageup', 'pause', 'pgdn', 'pgup', 'playpause', 'prevtrack', 'print', 'printscreen', 'prntscrn', 'prtsc', 'prtscr', 'return', 'right', 'scrolllock', 'select', 'separator', 'shift', 'shiftleft', 'shiftright', 'sleep', 'space', 'stop', 'subtract', 'tab', 'up', 'volumedown', 'volumemute', 'volumeup', 'win', 'winleft', 'winright', 'yen', 'command', 'option', 'optionleft', 'optionright']
+
+Mozilla Firefox:
+- exe_path : &quot;firefox&quot;
+- go foward: &quot;alt right&quot;
+- go back: &quot;alt left&quot;
+- next tab: &quot;ctrl \t&quot;
+- private tab: &quot;ctrl shift p&quot;
+- new bookmark: &quot;ctrl d&quot;
+- search bar: &quot;ctrl j&quot;
+- fold window: &quot;ctrl w&quot;
+
+Visual Studio Code:
+- exe_path : &quot;code&quot;
+- new command: &quot;ctrl shift p&quot;
+
+Kitty:
+- exe_path : &quot;kitty&quot;
+- split window: &quot;ctrl shift enter&quot;
+
+################### ALHPABET &amp; KEY NAMES ######################
+#### these change be changed to any single word value 
+#### that does not conflict with another command
+
+## if you try to use a word that is not in english vocab,
+## the model will not recognize it.
+alphabet: 
+  - air       : &quot;a&quot; 
+  - bat       : &quot;b&quot; 
+  - cap       : &quot;c&quot; 
+  - drum      : &quot;d&quot; 
+  - each      : &quot;e&quot; 
+  - fine      : &quot;f&quot; 
+  - gust      : &quot;g&quot; 
+  - harp      : &quot;h&quot; 
+  - sit       : &quot;i&quot; 
+  - jury      : &quot;j&quot; 
+  - crunch    : &quot;k&quot; 
+  - look      : &quot;l&quot; 
+  - made      : &quot;m&quot; 
+  - near      : &quot;n&quot; 
+  - odd       : &quot;o&quot; 
+  - pit       : &quot;p&quot; 
+  - quench    : &quot;q&quot; 
+  - red       : &quot;r&quot; 
+  - sun       : &quot;s&quot; 
+  - trap      : &quot;t&quot; 
+  - urge      : &quot;u&quot; 
+  - vest      : &quot;v&quot; 
+  - whale     : &quot;w&quot; 
+  - plex      : &quot;x&quot; 
+  - yank      : &quot;y&quot; 
+  - zip       : &quot;z&quot;    
+  - enter     : &quot;enter&quot;
+  - escape    : &quot;escape&quot;
+  - home      : &quot;home&quot;
+  - down      : &quot;pagedown&quot;
+  - up        : &quot;pageup&quot;
+  - back : &quot;backspace&quot;
+  - delete    : &quot;delete&quot;
+  - quieter   : 'volumedown'
+  - mute      : 'volumemute'
+  - louder    : 'volumeup'
+
+################TIMER INFO#######################
+time_before_break: 20 #minutes
+shell_safety_duration: 5 #seconds
+
+##################################################
+### ONLY EDIT BELOW IF YOU WANT A CUSTOM MODEL ###
+##################################################
+models:
+- default: vosk
+- nvidia_nemo:
+    - model_path: &quot;src/nvidia/stt_en_conformer_ctc_medium.nemo&quot;
+    - pretrained_name: &quot;stt_en_conformer_ctc_medium&quot;
+    - cuda : -1
+    - audio_dir : &quot;Assets/&quot;
+    - audio_type : &quot;wav&quot;
+    - batch_size : 12 
+- vosk:
+  - type: &quot;https://alphacephei.com/vosk/models/vosk-model-en-us-0.22.zip&quot;
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="shell-mode"><a class="header" href="#shell-mode">Shell Mode</a></h1>
 <p>Shell mode executes user input as a shell command. Shell commands are sourced from the config file of the default shell. Therefore, aliases and functions can both be called from shell model with natural language names that the user can define.</p>
 <pre><code class="language-bash">## example: Saying &quot;dim&quot; will automatically lower system brightness
